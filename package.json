@@ -1,0 +1,24 @@
+{
+  "name": "one-of-eleven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm run test-unit",
+    "test-unit": "NODE_ENV=test mocha --require co-mocha '**.spec.js'"
+  },
+  "dependencies": {
+    "bower": "^1.7.9",
+    "express": "^4.14",
+    "serve-static": "^1.11.1",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.3",
+    "mocha": "^3.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
