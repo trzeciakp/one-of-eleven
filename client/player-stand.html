@@ -9,7 +9,7 @@
             Remove life</button>
     </div>
     <div class="col-md-12">
-        <img src="{{player.photo}}" class="photo"/>
+        <img src="{{player.photo}}" ng-class="{'player-removed': !hasLifes()}" class="photo"/>
     </div>
     <div class="row life-container">
         <div class="col-md-4 life-outer" ng-repeat="i in [3, 2, 1]">

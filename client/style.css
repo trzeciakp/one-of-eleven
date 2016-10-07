@@ -43,3 +43,7 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.player-removed {
+    filter: brightness(50%);
+}
