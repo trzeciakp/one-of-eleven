@@ -24,12 +24,14 @@ module.exports = function(io) {
 		socket.on('addPoints', function(data) {
 			var foundPlayer = _.find(players, ['name', data.name]);
 			foundPlayer.score = (Number(foundPlayer.score) + data.points) + '';
+			io.emit('pointsAdded', {});
 			emitPlayers();
 		});
 
 		socket.on('removeLife', function(data) {
 			var foundPlayer = _.find(players, ['name', data.name]);
 			foundPlayer.lifes -= 1;
+			io.emit('lifeRemoved', {});
 			emitPlayers();
 		});
 

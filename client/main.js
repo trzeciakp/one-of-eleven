@@ -51,8 +51,18 @@ function PlayerStand(socket) {
 					socket.emit('addPoints', {
 						name: scope.player.name,
 						points: 10
-					})
+					});
 				}
+			}
+
+			function playSuccessAudio() {
+				var audio = new Audio('audio/101.mp3');
+				audio.play();
+			}
+
+			function playErrorAudio() {
+				var audio = new Audio('audio/102.mp3');
+				audio.play();
 			}
 
 			function canAddPoints() {
@@ -64,13 +74,19 @@ function PlayerStand(socket) {
 					socket.emit('removeLife', {
 						name: scope.player.name
 					});
-
-					console.log('life removed')
 				}
 			}
 			function hasLifes() {
 				return scope.player.lifes > 0;
 			}
+
+			socket.on('pointsAdded', function() {
+				playSuccessAudio();
+			});
+
+			socket.on('lifeRemoved', function() {
+				playErrorAudio();
+			});
 		}
 	}
 }
