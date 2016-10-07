@@ -57,12 +57,12 @@ function HomeCtrl($scope, socket) {
 		photo: 'img/micek.jpg',
 		name: 'Wojciech',
 		score: '11',
-		lifes: 2
+		lifes: 1
 	},{
 		photo: 'img/papiez.jpg',
 		name: 'Karol',
 		score: '93',
-		lifes: 1
+		lifes: 2
 	}];
 
 	socket.on('hello', function (data) {

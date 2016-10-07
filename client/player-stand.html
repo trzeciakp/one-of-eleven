@@ -4,14 +4,10 @@
         <img src="{{player.photo}}" class="photo"/>
     </div>
     <div class="row life-container">
-        <div class="col-md-4 life-outer">
-            <div class="life life-empty"></div>
-        </div>
-        <div class="col-md-4 life-outer">
-            <div class="life life-present"></div>
-        </div>
-        <div class="col-md-4 life-outer">
-            <div class="life life-present"></div>
+        <div class="col-md-4 life-outer" ng-repeat="i in [3, 2, 1]">
+
+            <div class="life" ng-class="{{player.lifes}} >= i ? 'life-present' : 'life-empty'"></div>
+
         </div>
     </div>
     <div class="col-md-12 name">{{player.name}}</div>
