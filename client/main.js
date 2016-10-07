@@ -52,11 +52,11 @@ function PlayerStand(socket) {
 			scope.removeLife = removeLife;
 			scope.hasLifes = hasLifes;
 
-			function addPoints() {
-				if (canAddPoints()) {
+			function addPoints(points) {
+				if (canAddPoints(points)) {
 					socket.emit('addPoints', {
 						name: scope.player.name,
-						points: 10
+						points: points
 					});
 				}
 			}
@@ -71,8 +71,8 @@ function PlayerStand(socket) {
 				audio.play();
 			}
 
-			function canAddPoints() {
-				return !scope.readOnly && hasLifes() && Number(scope.player.score) + 10 < 1000
+			function canAddPoints(points) {
+				return !scope.readOnly && hasLifes() && Number(scope.player.score) + points < 1000
 			}
 
 			function removeLife() {

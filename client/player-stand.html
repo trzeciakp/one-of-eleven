@@ -1,12 +1,16 @@
 
 <div>
     <div class="row buttons" ng-show="!readOnly">
-        <button class="btn btn-primary col-md-5" ng-click="addPoints()" ng-disabled="!canAddPoints()">
+        <button class="btn btn-primary col-md-3" ng-click="addPoints(20)" ng-disabled="!canAddPoints(20)">
             <i class="fa fa-plus"></i>
-            Add points</button>
-        <button class="btn btn-secondary col-md-5 col-md-offset-1" ng-click="removeLife()" ng-disabled="!hasLifes()">
+            20</button>
+        <button class="btn btn-primary col-md-3 col-md-offset-1" ng-click="addPoints(10)" ng-disabled="!canAddPoints(10)">
+            <i class="fa fa-plus"></i>
+            10</button>
+        <button class="btn btn-secondary col-md-3 col-md-offset-1" ng-click="removeLife()" ng-disabled="!hasLifes()">
             <i class="fa fa-minus"></i>
-            Remove life</button>
+            <i class="fa fa-heart"></i>
+            </button>
     </div>
     <div class="col-md-12">
         <img src="{{player.photo}}" ng-class="{'player-removed': !hasLifes()}" class="photo"/>
