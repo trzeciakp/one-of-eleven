@@ -22,5 +22,8 @@
     "bootstrap-theme-bootswatch-flatly": "1.0.2",
     "font-awesome": "4.6.3",
     "angular-7segments": "0.2.0"
+  },
+  "resolutions": {
+      "angular": "1.5.8"
   }
 }
