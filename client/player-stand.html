@@ -1,6 +1,6 @@
 
 <div>
-    <div class="row buttons">
+    <div class="row buttons" ng-show="!readOnly">
         <button class="btn btn-primary col-md-5" ng-click="addPoints()" ng-disabled="!canAddPoints()">
             <i class="fa fa-plus"></i>
             Add points</button>

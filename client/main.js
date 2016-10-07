@@ -8,6 +8,7 @@ app
 	.config(routeConfig)
 	.factory('socket', function (socketFactory) { return socketFactory(); })
 	.controller('AppCtrl', AppCtrl)
+	.controller('PointControlCtrl', PointControlCtrl)
 	.directive('playerStand', PlayerStand)
 	.controller('HomeCtrl', HomeCtrl);
 
@@ -18,6 +19,10 @@ function routeConfig($routeProvider) {
 		.when('/', {
 			templateUrl: 'home-page.html',
 			controller: 'HomeCtrl'
+		})
+		.when('/control', {
+			templateUrl: 'control-page.html',
+			controller: 'PointControlCtrl'
 		})
 		.otherwise('/');
 }
@@ -32,7 +37,8 @@ PlayerStand.$inject = ['socket']
 function PlayerStand(socket) {
 	return {
 		scope: {
-			player: '='
+			player: '=',
+			readOnly: '='
 		},
 		templateUrl: 'player-stand.html',
 		link: function(scope) {
@@ -66,7 +72,7 @@ function PlayerStand(socket) {
 			}
 
 			function canAddPoints() {
-				return hasLifes() && Number(scope.player.score) + 10 < 1000
+				return !scope.readOnly && hasLifes() && Number(scope.player.score) + 10 < 1000
 			}
 
 			function removeLife() {
@@ -81,11 +87,15 @@ function PlayerStand(socket) {
 			}
 
 			socket.on('pointsAdded', function() {
-				playSuccessAudio();
+				if (scope.readOnly) {
+					playSuccessAudio();
+				}
 			});
 
 			socket.on('lifeRemoved', function() {
-				playErrorAudio();
+				if (scope.readOnly) {
+					playErrorAudio();
+				}
 			});
 		}
 	}
@@ -94,19 +104,25 @@ function PlayerStand(socket) {
 HomeCtrl.$inject = ['$scope', 'socket'];
 
 function HomeCtrl($scope, socket) {
-	$scope.message = '';
-
 	$scope.players = [];
-
-	$scope.resetPlayers = resetPlayers;
-
-	socket.on('hello', function (data) {
-		$scope.message = data.msg;
-	});
+	$scope.isReadOnly = true;
 
 	socket.on('playersUpdate', function (data) {
 		$scope.players = data.players;
-	})
+	});
+}
+
+PointControlCtrl.$inject = ['$scope', 'socket'];
+
+function PointControlCtrl($scope, socket) {
+	$scope.players = [];
+	$scope.isReadOnly = false;
+
+	$scope.resetPlayers = resetPlayers;
+
+	socket.on('playersUpdate', function (data) {
+		$scope.players = data.players;
+	});
 
 	function resetPlayers() {
 		socket.emit('resetPlayers', {});
