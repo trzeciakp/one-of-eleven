@@ -1,0 +1,40 @@
+.name {
+    background-color: #EEE8B1;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.life-present {
+    background-color: #2736C4;
+}
+
+.life-empty {
+    background-color: #7B8199;
+}
+
+.life {
+    height: 100%;
+    width: 100%;
+}
+
+.life-outer {
+    height: 100%;
+    padding: 2px;
+}
+
+.life-container {
+    height: 60px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.score {
+    background-color: #000000;
+}
+
+.photo {
+    width:100%
+}

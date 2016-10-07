@@ -1,0 +1,20 @@
+
+<div>
+    <div class="col-md-12">
+        <img src="{{player.photo}}" class="photo"/>
+    </div>
+    <div class="row life-container">
+        <div class="col-md-4 life-outer">
+            <div class="life life-empty"></div>
+        </div>
+        <div class="col-md-4 life-outer">
+            <div class="life life-present"></div>
+        </div>
+        <div class="col-md-4 life-outer">
+            <div class="life life-present"></div>
+        </div>
+    </div>
+    <div class="col-md-12 name">{{player.name}}</div>
+    <div class="col-md-12 score" seg-group data-ng-model="player.score" seg-options="options"> </div>
+</div>
+
