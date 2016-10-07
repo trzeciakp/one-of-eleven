@@ -2,16 +2,16 @@
     background-color: #EEE8B1;
     padding: 5px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
 .life-present {
-    background-color: #2736C4;
+    background-color: #ECFA2B;
 }
 
 .life-empty {
-    background-color: #7B8199;
+    background-color: #001687;
 }
 
 .life {
@@ -37,4 +37,9 @@
 
 .photo {
     width:100%
+}
+
+.buttons {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

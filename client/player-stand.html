@@ -1,5 +1,13 @@
 
 <div>
+    <div class="row buttons">
+        <button class="btn btn-primary col-md-5" ng-click="addPoints()" ng-disabled="!canAddPoints()">
+            <i class="fa fa-plus"></i>
+            Add points</button>
+        <button class="btn btn-secondary col-md-5 col-md-offset-1" ng-click="removeLife()" ng-disabled="!hasLifes()">
+            <i class="fa fa-minus"></i>
+            Remove life</button>
+    </div>
     <div class="col-md-12">
         <img src="{{player.photo}}" class="photo"/>
     </div>
@@ -12,5 +20,6 @@
     </div>
     <div class="col-md-12 name">{{player.name}}</div>
     <div class="col-md-12 score" seg-group data-ng-model="player.score" seg-options="options"> </div>
+
 </div>
 

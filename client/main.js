@@ -27,7 +27,9 @@ AppCtrl.$inject = ['$scope'];
 function AppCtrl($scope) {
 }
 
-function PlayerStand() {
+PlayerStand.$inject = ['socket']
+
+function PlayerStand(socket) {
 	return {
 		scope: {
 			player: '='
@@ -39,6 +41,36 @@ function PlayerStand() {
 				align: 'right',
 				watch: true
 			};
+			scope.addPoints = addPoints;
+			scope.canAddPoints = canAddPoints;
+			scope.removeLife = removeLife;
+			scope.hasLifes = hasLifes;
+
+			function addPoints() {
+				if (canAddPoints()) {
+					socket.emit('addPoints', {
+						name: scope.player.name,
+						points: 10
+					})
+				}
+			}
+
+			function canAddPoints() {
+				return hasLifes() && Number(scope.player.score) + 10 < 1000
+			}
+
+			function removeLife() {
+				if (hasLifes()) {
+					socket.emit('removeLife', {
+						name: scope.player.name
+					});
+
+					console.log('life removed')
+				}
+			}
+			function hasLifes() {
+				return scope.player.lifes > 0;
+			}
 		}
 	}
 }
@@ -48,24 +80,19 @@ HomeCtrl.$inject = ['$scope', 'socket'];
 function HomeCtrl($scope, socket) {
 	$scope.message = '';
 
-	$scope.players = [{
-		photo: 'img/pazdan.jpg',
-		name: 'Michał',
-		score: '41',
-		lifes: 3
-	},{
-		photo: 'img/micek.jpg',
-		name: 'Wojciech',
-		score: '11',
-		lifes: 1
-	},{
-		photo: 'img/papiez.jpg',
-		name: 'Karol',
-		score: '93',
-		lifes: 2
-	}];
+	$scope.players = [];
+
+	$scope.resetPlayers = resetPlayers;
 
 	socket.on('hello', function (data) {
 		$scope.message = data.msg;
+	});
+
+	socket.on('playersUpdate', function (data) {
+		$scope.players = data.players;
 	})
+
+	function resetPlayers() {
+		socket.emit('resetPlayers', {});
+	}
 }
