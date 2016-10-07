@@ -14,10 +14,10 @@
     "tests"
   ],
   "dependencies": {
+    "angular": "1.5.8",
     "socket.io": "1.4.8",
     "angular-socket-io": "0.7.0",
     "lodash": "4.15.0",
-    "angular": "1.5.8",
     "angular-route": "1.5.8",
     "bootstrap-theme-bootswatch-flatly": "1.0.2",
     "font-awesome": "4.6.3",
