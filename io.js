@@ -40,6 +40,7 @@ module.exports = function(io) {
 				player.lifes = 3;
 				player.score = getRandomInt(1,3) + '';
 			});
+			io.emit('playersReset', {});
 			emitPlayers();
 		});
 

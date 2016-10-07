@@ -110,6 +110,11 @@ function HomeCtrl($scope, socket) {
 	socket.on('playersUpdate', function (data) {
 		$scope.players = data.players;
 	});
+
+	socket.on('playersReset', function () {
+		var audio = new Audio('audio/100.mp3');
+		audio.play();
+	});
 }
 
 PointControlCtrl.$inject = ['$scope', 'socket'];
