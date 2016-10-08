@@ -19,7 +19,7 @@ var players = [{
 		'muzyczne-legia'
 	]
 },{
-	photo: 'img/papiez.jpg',
+	photo: 'img/papiez2.jpg',
 	name: 'Karol',
 	id: 'papiez',
 	score: '3',
@@ -87,7 +87,6 @@ module.exports = function(io) {
 		});
 
 		socket.on('soundRequest', function(data) {
-			console.log(data.name);
 			io.emit('playSound', { name: data.name} );
 		});
 
