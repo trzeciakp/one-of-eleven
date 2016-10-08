@@ -48,3 +48,7 @@
 .player-removed {
     filter: brightness(50%);
 }
+
+.sounds > button {
+    margin-top:2px;
+}

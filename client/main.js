@@ -51,6 +51,7 @@ function PlayerStand(socket) {
 			scope.canAddPoints = canAddPoints;
 			scope.removeLife = removeLife;
 			scope.hasLifes = hasLifes;
+			scope.play = play;
 
 			function addPoints(points) {
 				if (canAddPoints(points)) {
@@ -59,16 +60,6 @@ function PlayerStand(socket) {
 						points: points
 					});
 				}
-			}
-
-			function playSuccessAudio() {
-				var audio = new Audio('audio/101-fixed.mp3');
-				audio.play();
-			}
-
-			function playErrorAudio() {
-				var audio = new Audio('audio/102-fixed.mp3');
-				audio.play();
 			}
 
 			function canAddPoints(points) {
@@ -86,17 +77,9 @@ function PlayerStand(socket) {
 				return scope.player.lifes > 0;
 			}
 
-			socket.on('pointsAdded', function() {
-				if (scope.readOnly) {
-					playSuccessAudio();
-				}
-			});
-
-			socket.on('lifeRemoved', function() {
-				if (scope.readOnly) {
-					playErrorAudio();
-				}
-			});
+			function play(soundName) {
+				socket.emit('soundRequest', { name: soundName});
+			}
 		}
 	}
 }
@@ -107,13 +90,22 @@ function HomeCtrl($scope, socket) {
 	$scope.players = [];
 	$scope.isReadOnly = true;
 
+	var sounds = {
+		success: new Audio('audio/success.mp3'),
+		error: new Audio('audio/102-fixed.mp3'),
+		start: new Audio('audio/100.mp3')
+	};
+
 	socket.on('playersUpdate', function (data) {
 		$scope.players = data.players;
 	});
 
-	socket.on('playersReset', function () {
-		var audio = new Audio('audio/100.mp3');
-		audio.play();
+	socket.on('playSound', function(data) {
+		var sound = sounds[data.name];
+		if (sound === undefined) {
+			sound = new Audio('audio/' + data.name + '.mp3')
+		}
+		sound.play();
 	});
 }
 

@@ -25,5 +25,10 @@
     <div class="col-md-12 name">{{player.name}}</div>
     <div class="col-md-12 score" seg-group data-ng-model="player.score" seg-options="options"> </div>
 
+    <div ng-show="!readOnly" class="sounds col-md-12">
+        <button class="btn btn-warning col-md-12" ng-click="play(sound)" ng-repeat="sound in player.sounds">
+            <i class="fa fa-play"></i>
+            {{sound}}</button>
+    </div>
 </div>
 
