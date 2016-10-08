@@ -1,15 +1,17 @@
 var players = [{
 	photo: 'img/pazdan.jpg',
 	name: 'Michał',
+	id: 'pazdan',
 	score: '2',
 	sounds: [
-		'pazdan-intro',
-		'pazdan-dieta',
-		'pazdan-pomidor'
+		'intro',
+		'dieta',
+		'pomidor'
 	],
 	lifes: 3
 },{
 	photo: 'img/micek.jpg',
+	id: 'micek',
 	name: 'Wojciech',
 	score: '1',
 	lifes: 3,
@@ -19,11 +21,39 @@ var players = [{
 },{
 	photo: 'img/papiez.jpg',
 	name: 'Karol',
+	id: 'papiez',
 	score: '3',
 	lifes: 3,
 	sounds: [
-		'papiez-intro',
-		'papiez-jezus'
+		'jan-Paweł-Drugi-Papież',
+		'intro',
+		'co',
+		'noo',
+		'bardzo',
+		'a-można-jak-najbardziej,-jeszcze-jak',
+		'ja-już-nie-pamiętam-tak-dokładnie',
+		'taki-ciężki',
+		'no-jak-Pan-Jezus-powiedział',
+		'a-co-mam-zmieniać',
+		'po-co-mam-wybierać,-najlepiej-zabrać-obie',
+		'jest-możliwe',
+		'ja-tehaz',
+		'okrutnik',
+		'a-to-ja-nie-wiem,-to-które-jem',
+		'poszukajcie',
+		'bądźmy-łagodni',
+		'może-tak-kiedy-jak-mi-dali',
+		'szpinak',
+		'co-mam-robić-Nie-mogę-powiedzieć-żebym-ich-nie-lubiał',
+		'tak-jak-Pan-Jezus-powiedział',
+		'co-mam-robić',
+		'nie,-bo-mi-nie-pokazali',
+		'tak...-Czasem-żeśmy-się-nawet-bili',
+		'nie-dali-mi-nigdy',
+		'dziewczynki-z-warkoczykami',
+		'niech-zstąpi-duch-Twój',
+		'marysia',
+		'tam-była-cukiernia,-po-maturze-chodziliśmy-na-kremówki'
 	]
 }];
 
@@ -57,6 +87,7 @@ module.exports = function(io) {
 		});
 
 		socket.on('soundRequest', function(data) {
+			console.log(data.name);
 			io.emit('playSound', { name: data.name} );
 		});
 

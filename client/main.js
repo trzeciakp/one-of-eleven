@@ -78,7 +78,7 @@ function PlayerStand(socket) {
 			}
 
 			function play(soundName) {
-				socket.emit('soundRequest', { name: soundName});
+				socket.emit('soundRequest', { name: scope.player.id + '/' + soundName});
 			}
 		}
 	}
