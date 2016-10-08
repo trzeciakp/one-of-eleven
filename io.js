@@ -3,6 +3,7 @@ var players = [{
 	name: 'Michał',
 	score: '2',
 	sounds: [
+		'pazdan-intro',
 		'pazdan-dieta',
 		'pazdan-pomidor'
 	],
@@ -51,7 +52,7 @@ module.exports = function(io) {
 				player.lifes = 3;
 				player.score = getRandomInt(1,3) + '';
 			});
-			io.emit('pl;3', { name: 'start'} );
+			io.emit('playSound', { name: 'start'} );
 			emitPlayers();
 		});
 
