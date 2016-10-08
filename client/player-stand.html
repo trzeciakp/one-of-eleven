@@ -12,8 +12,8 @@
             <i class="fa fa-heart"></i>
             </button>
     </div>
-    <div class="col-md-12">
-        <img src="{{player.photo}}" ng-class="{'player-removed': !hasLifes()}" class="photo"/>
+    <div class="row">
+        <img src="{{player.photo}}" ng-class="{'player-removed': !hasLifes()}" class="photo col-md-12"/>
     </div>
     <div class="row life-container">
         <div class="col-md-4 life-outer" ng-repeat="i in [3, 2, 1]">

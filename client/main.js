@@ -62,12 +62,12 @@ function PlayerStand(socket) {
 			}
 
 			function playSuccessAudio() {
-				var audio = new Audio('audio/101.mp3');
+				var audio = new Audio('audio/101-fixed.mp3');
 				audio.play();
 			}
 
 			function playErrorAudio() {
-				var audio = new Audio('audio/102.mp3');
+				var audio = new Audio('audio/102-fixed.mp3');
 				audio.play();
 			}
 
