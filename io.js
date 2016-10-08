@@ -6,7 +6,8 @@ var players = [{
 	sounds: [
 		'intro',
 		'dieta',
-		'pomidor'
+		'pomidor',
+		'jeden-za-drugiego'
 	],
 	lifes: 3
 },{

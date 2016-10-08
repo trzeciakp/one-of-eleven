@@ -90,6 +90,8 @@ function HomeCtrl($scope, socket) {
 	$scope.players = [];
 	$scope.isReadOnly = true;
 
+	var lastSound = null;
+
 	var sounds = {
 		success: new Audio('audio/success.mp3'),
 		error: new Audio('audio/102-fixed.mp3'),
@@ -104,6 +106,10 @@ function HomeCtrl($scope, socket) {
 		var sound = sounds[data.name];
 		if (sound === undefined) {
 			sound = new Audio('audio/' + data.name + '.mp3')
+			if (lastSound != null) {
+				lastSound.pause();
+			}
+			lastSound = sound;
 		}
 		sound.play();
 	});
