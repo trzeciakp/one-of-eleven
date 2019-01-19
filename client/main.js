@@ -9,6 +9,7 @@ app
 	.factory('socket', function (socketFactory) { return socketFactory(); })
 	.controller('AppCtrl', AppCtrl)
 	.controller('PointControlCtrl', PointControlCtrl)
+	.controller('ChooseCtrl', ChooseCtrl)
 	.directive('playerStand', PlayerStand)
 	.controller('HomeCtrl', HomeCtrl);
 
@@ -23,6 +24,10 @@ function routeConfig($routeProvider) {
 		.when('/control', {
 			templateUrl: 'control-page.html',
 			controller: 'PointControlCtrl'
+		})
+		.when('/choose', {
+			templateUrl: 'choose-page.html',
+			controller: 'ChooseCtrl'
 		})
 		.otherwise('/');
 }
@@ -95,7 +100,9 @@ function HomeCtrl($scope, socket) {
 	var sounds = {
 		success: new Audio('audio/success.mp3'),
 		error: new Audio('audio/102-fixed.mp3'),
-		start: new Audio('audio/100.mp3')
+		start: new Audio('audio/100.mp3'),
+		choose: new Audio('audio/zglaszanie.mp3')
+
 	};
 
 	socket.on('playersUpdate', function (data) {
@@ -113,6 +120,16 @@ function HomeCtrl($scope, socket) {
 		}
 		sound.play();
 	});
+}
+
+ChooseCtrl.$inject = ['$scope', 'socket'];
+
+function ChooseCtrl($scope, socket) {
+	$scope.play = play;
+
+	function play() {
+		socket.emit('soundRequest', { name: 'choose'});
+	}
 }
 
 PointControlCtrl.$inject = ['$scope', 'socket'];
