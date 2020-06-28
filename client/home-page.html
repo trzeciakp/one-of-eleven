@@ -1,3 +1,11 @@
-<div class="row">
+<div class="row" ng-show="!isReadOnly">
     <player-stand player="player" ng-repeat="player in players" class="col-md-offset-1 col-md-3" read-only="isReadOnly"></player-stand>
+</div>
+<div class="row" ng-show="isReadOnly && !!name">
+    <player-stand ng-show="!!name" player="player()" class="col-md-offset-1 col-md-3" read-only="isReadOnly"></player-stand>
+</div>
+<div class="row" ng-show="isReadOnly && !name">
+    Podaj imie
+    <input ng-model="nameInput" type="text" />
+    <button class="btn btn-primary btn-sm" ng-click="updateName()">zapisz</button>
 </div>

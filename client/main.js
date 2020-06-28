@@ -90,10 +90,17 @@ function PlayerStand(socket) {
 }
 
 HomeCtrl.$inject = ['$scope', 'socket'];
-
+var emptyPlayer = {
+	name: '',
+	lifes: 3,
+	score: '0'
+}
 function HomeCtrl($scope, socket) {
 	$scope.players = [];
+	$scope.name = window.localStorage.name || '';
+	$scope.nameInput = '';
 	$scope.isReadOnly = true;
+	$scope.loading = false;
 
 	var lastSound = null;
 
@@ -104,6 +111,18 @@ function HomeCtrl($scope, socket) {
 		choose: new Audio('audio/zglaszanie.mp3')
 
 	};
+
+	$scope.updateName = function() {
+		var newName = $scope.nameInput
+		$scope.name = newName;
+		window.localStorage.name = newName
+		socket.emit('newPlayer', { name: newName});
+	}
+
+	$scope.player = function() {
+		var found = _.find($scope.players, ['name', $scope.name]);
+		return found ? found : emptyPlayer
+	}
 
 	socket.on('playersUpdate', function (data) {
 		$scope.players = data.players;

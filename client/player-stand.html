@@ -12,9 +12,7 @@
             <i class="fa fa-heart"></i>
             </button>
     </div>
-    <div class="row">
-        <img src="{{player.photo}}" ng-class="{'player-removed': !hasLifes()}" class="photo col-md-12"/>
-    </div>
+    <div class="col-md-12 name">{{player.name}}</div>
     <div class="row life-container">
         <div class="col-md-4 life-outer" ng-repeat="i in [3, 2, 1]">
 
@@ -22,7 +20,6 @@
 
         </div>
     </div>
-    <div class="col-md-12 name">{{player.name}}</div>
     <div class="col-md-12 score" seg-group data-ng-model="player.score" seg-options="options"> </div>
 
     <div ng-show="!readOnly" class="sounds col-md-12">
